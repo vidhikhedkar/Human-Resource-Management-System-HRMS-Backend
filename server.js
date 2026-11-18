@@ -28,12 +28,22 @@ app.use(
 app.use(express.json());
 app.use(cookieParser());
 
-app.get("/api/health", (req, res) => {
-    res.json({
+
+app.get("/", (req, res) => {
+    res.status(200).json({
         success: true,
-        message: "WorkSphere HRMS API is running",
+        message: "HRMS Backend API is running successfully",
     });
 });
+
+app.get("/api/health", (req, res) => {
+    res.status(200).json({
+        success: true,
+        status: "OK",
+        message: "HRMS API is healthy",
+    });
+});
+
 
 app.use("/api/auth", authRoutes);
 app.use("/api/employees", employeeRoutes);
